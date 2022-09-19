@@ -1,0 +1,112 @@
+
+<style>
+	.acclaim-widget-container {
+		background: url('https://acclaim.gg/img/bg/features_bg.jpg') no-repeat;
+		background-size: cover;
+		border-radius: 20px;
+		text-align: center;
+		padding: 10px;
+	}
+
+	.acclaim-widget-intro {
+		color: white;
+		font-size: 22px;
+    	font-weight: 700;
+    	margin-bottom: 25px;
+    	font-family: 'Poppins', sans-serif;
+    	text-transform: uppercase;
+    	position: relative;
+    	display: inline-block;
+    	margin-top: 18px;
+	}
+
+	.acclaim-widget-title {
+		color: #e4a101;
+		text-transform: capitalize;
+		font-size: 40px;
+		font-family: 'Oxanium', cursive;
+		font-weight: 800;
+    	line-height: .9;
+    	margin-bottom: 12px;
+    	letter-spacing: -3px;
+	}
+
+	.acclaim-widget-description {
+		font-weight: 400;
+    	color: #dbdbdb;
+		font-size: 16px;
+  		text-align: center;
+	}
+
+	.acclaim-widget-description {
+		color: white
+	}
+
+	.acclaim-widget-call-to-action {
+		color: black;
+		background: #e4a101;
+    	padding: 20px 35px;
+    	margin-bottom: 8px;
+		border-radius: 5px;
+		background-color: #e4a101;
+	}
+
+	a.acclaim-widget-call-to-action:hover {
+    	color: black !important;
+		background-color: white;
+	}
+
+	a.acclaim-widget-call-to-action:visited {
+    	color: black !important;
+		background-color: #e4a101;
+	}
+
+</style>
+<div class="container mx-auto acclaim-widget-container"
+	x-data="{ 
+		widgetData : {
+			intro: null,
+			title: null,
+			description: null,
+			cta: null,
+			ctaLink: null,
+			ctaLinkTwitch : null,
+			ctaLinkYoutube : null,
+		}}" 
+	x-init="fetch('https://acclaim.gg/api-widget/v1/alliance/'+window.acclaimAllianceId)
+		.then(response=> {
+			if (!response.ok) alert(`Something went wrong: ${response.status} - ${response.statusText}`)
+			return response.json()
+		})
+		.then(data => widgetData = {
+			intro: data.intro,
+			title: data.title,
+			description: data.description,
+			cta: data.cta,
+			ctaLink: data.ctaLink,
+			ctaLinkTwitch: data.ctaLink + '&social=twitch',
+			ctaLinkYoutube: data.ctaLink + '&social=youtube',
+		})">
+	<br>
+	<p class="acclaim-widget-intro" x-html="widgetData.intro"></p>
+	<p class="acclaim-widget-title" x-html="widgetData.title"></p>
+	<p class="acclaim-widget-description">
+		<span x-html="widgetData.description"></span>
+		<br>
+		<br>
+		<center>
+			<div>
+				<a x-bind:href="widgetData.ctaLinkTwitch"><img width="300px" src="https://acclaim.gg/img/openid/twitch.png"></a>
+			</div>
+			<br>
+			<div>
+				<a x-bind:href="widgetData.ctaLinkYoutube"><img width="300px" src="https://acclaim.gg/img/openid/google.png"></a>
+			</div>
+			
+			<br><br>
+		</center>
+		
+	</p>
+	<br><br>
+	
+</div>
