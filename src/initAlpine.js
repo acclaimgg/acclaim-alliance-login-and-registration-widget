@@ -1,7 +1,6 @@
 // initAlpine.js
 // Import the Alpine JS framework
 import Alpine from 'alpinejs'
-import axios from 'axios'
 
 // If you abstracted your Alpine component logic, you'd import that here
 //import widget from './widget.js'

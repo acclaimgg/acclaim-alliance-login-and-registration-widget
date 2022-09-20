@@ -73,7 +73,7 @@
 			ctaLinkTwitch : null,
 			ctaLinkYoutube : null,
 		}}" 
-	x-init="fetch('https://acclaim.gg/api-widget/v1/alliance/'+window.acclaimAllianceId)
+	x-init="fetch('https://acclaim.gg/api-widget/v1/alliance/'+ document.getElementById('acclaim-alliance-info-widget-script').getAttribute('data-acclaim-widget-id'))
 		.then(response=> {
 			if (!response.ok) alert(`Something went wrong: ${response.status} - ${response.statusText}`)
 			return response.json()
